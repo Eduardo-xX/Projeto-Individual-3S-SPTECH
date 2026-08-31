@@ -11,22 +11,35 @@ main {
     width: 250px;
     margin: 1.5rem;
     position: relative;
+    transition: .3s;
+}
+
+.container_evento:hover {
+    background-color: rgb(68, 68, 68, 0.2);
+    border-radius: 1rem;
+    cursor: pointer;
 }
 
 .container_buttonOptions {
     width: 30px;
     height: 30px;
     position: absolute;
-    right: 16px;
+    right: 0;
     cursor: pointer;
+    background-color: rgba(128, 196, 255, 0.6);
+    padding: 0 .5rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.container_buttonOptions img {
     transition: .6s;
 }
 
-.container_buttonOptions:hover {
+.container_buttonOptions img:hover {
     transform: scale(1.1);
 }
 
-.container_buttonOptions:active {
+.container_buttonOptions img:active {
     transform: scale(1.2);
 }
 
@@ -40,7 +53,12 @@ main {
     height: 130px;
     display: flex;
     border-radius: 1rem;
-    
+}
+
+.container_image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
 }
 
 .container_titulo {
@@ -72,8 +90,8 @@ main {
 .container_options {
     position: absolute;
     top: 30px;
-    right: 8px;
-    background-color: #80C4FF;
+    right: 0;
+    background-color: rgba(128, 196, 255, 0.6);
     padding: .5rem;
     border-radius: 0 0 1rem 1rem;
 }

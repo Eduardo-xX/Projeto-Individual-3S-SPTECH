@@ -1,0 +1,36 @@
+:root {
+    --altura: calc(100vh - 60px - 50px)
+}
+
+.container_main {
+    display: block;
+    background-color: #FFB980;
+    height: var(--altura);
+    overflow-y: auto;   
+}
+
+.container_eventos {
+    display: flex;
+}
+
+/* Largura da barra de rolagem */
+/* ::-webkit-scrollbar {
+  width: 10px;
+} */
+
+/* Cor do fundo (trilha) */
+/* ::-webkit-scrollbar-track {
+  color: #FFB980;
+} */
+
+/* Cor do puxador (o que se move) */
+/* ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;   
+} */
+
+/* Cor do puxador ao passar o mouse */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+

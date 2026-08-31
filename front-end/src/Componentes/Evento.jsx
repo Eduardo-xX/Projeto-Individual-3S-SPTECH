@@ -17,7 +17,7 @@ function Evento (props) {
                 <img src={menuEvento} alt="menu" className={style.menuEvento}/>
             </div>
             <div className={style.container_image}>
-                <img src={props.image} alt="sla" />
+                <img src={props.caminhoImagem} alt="Imagem" />
             </div>
             <div className={style.container_titulo}>
                 <span>{props.titulo}</span>

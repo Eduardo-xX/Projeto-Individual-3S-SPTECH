@@ -3,4 +3,38 @@ header {
     background-color: #004682;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+.container_addEvento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    padding: .25rem .5rem;
+    background-color: rgba(128, 196, 255, 0.2);
+    cursor: pointer;
+    transition: .5s;
+}
+
+.container_addEvento:hover {
+    transform: scale(1.1);
+    background-color: rgba(128, 196, 255, 0.4);
+}
+
+.container_addEvento:active {
+    transform: scale(1.2);
+    background-color: rgba(128, 196, 255, 0.6);
+}
+
+.container_addEvento img {
+    width: 35px;
+    height: 35px;
+    margin-right: 1rem;
+}
+
+.container_addEvento span {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #1E1E1E;
 }
