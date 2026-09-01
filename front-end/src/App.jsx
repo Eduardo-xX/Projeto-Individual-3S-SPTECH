@@ -4,6 +4,7 @@ import Main from "./Componentes/Main"
 import Footer from "./Componentes/Footer"
 import { useState, useEffect } from "react"
 import Evento from "./Componentes/Evento"
+import CriarEvento from "./Componentes/CriarEvento"
 
 function App() {
   const [ eventos, setEventos ] = useState([]);
@@ -54,6 +55,7 @@ function App() {
                 />
               })
             }
+            <CriarEvento></CriarEvento>
           </Main>
         ) 
       }

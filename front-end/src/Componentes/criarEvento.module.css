@@ -1,0 +1,137 @@
+:root {
+    --margin-center: calc((100vw - 600px) / 2)
+}
+
+.container_criarEvento {
+    background-color: rgba(230, 230, 230, .9);
+    border-radius: 1rem;
+    position: absolute;
+    width: 600px;
+    margin-left: var(--margin-center);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    margin: 2rem;
+    font-size: 2.5rem;
+}
+
+form {
+    width: 90%;
+}
+
+form .container_stringImage {
+    width: 100%;
+    display: flex;
+}
+
+form .container_inputStrings {
+    width: 50%;
+}
+
+form label {
+    font-weight: bold;
+    display: inline-block;
+    width: 90px;
+}
+
+form input {
+    margin: .6rem 0;
+    height: 1.8rem;
+    border-radius: .5rem;
+    border: transparent;
+}
+
+form .container_datas {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+form .container_datas .container_dataInicio,
+form .container_datas .container_dataFim {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form .container_datas input {
+    width: 169px;
+    display: flex;
+    justify-content: center;
+}
+
+form .container_inputImage {
+    width: 50%;
+}
+
+form .container_inputImage input {
+    display: none;
+}
+
+form .file_upload_zone {
+    border: 2px dashed #D1D5DB;
+    border-radius: 6px;
+    padding: 30px;
+    text-align: center;
+    background-color: #F9FAFB;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #6B7280;
+}
+
+.file_name_hint {
+    font-size: 16px;
+    color: #096144; /* Verde indicando sucesso */
+    margin-top: 5px;
+}
+
+form .container_buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+form #idButton {
+    background-color: #004682;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    color: #efefef;
+    transition: .6s;
+}
+
+form #idButton:hover {
+    transform: scale(1.1);
+    background-color: rgba(0, 69, 130, 0.8);
+    cursor: pointer;
+}
+
+form #idButton:active {
+    transform: scale(1.2);
+    background-color: rgba(0, 69, 130, 0.7);
+}
+
+form #idButtonCancel {
+    background-color: #820000;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    color: #efefef;
+    transition: .6s;
+}
+
+form #idButtonCancel:hover {
+    transform: scale(1.1);
+    background-color: rgba(130, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+form #idButtonCancel:active {
+    transform: scale(1.2);
+    background-color: rgba(130, 0, 0, 0.7);
+}

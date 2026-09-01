@@ -6,7 +6,8 @@
     display: block;
     background-color: #FFB980;
     height: var(--altura);
-    overflow-y: auto;   
+    overflow-y: auto;
+    position: relative;
 }
 
 .container_eventos {
