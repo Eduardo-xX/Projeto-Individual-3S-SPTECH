@@ -74,6 +74,21 @@ form .container_inputImage input {
     display: none;
 }
 
+form .containerAlterarImagem {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+form .containerAlterarImagem label {
+    width: max-content;
+}
+
+form .containerAlterarImagem #idAlterarImagem {
+    display: flex;
+}
+
 form .file_upload_zone {
     border: 2px dashed #D1D5DB;
     border-radius: 6px;

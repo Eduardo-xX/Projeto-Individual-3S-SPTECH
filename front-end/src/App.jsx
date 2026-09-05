@@ -5,10 +5,41 @@ import Footer from "./Componentes/Footer"
 import { useState, useEffect } from "react"
 import Evento from "./Componentes/Evento"
 import CriarEvento from "./Componentes/CriarEvento"
+import EditarEvento from "./Componentes/EditarEvento"
 
 function App() {
   const [ eventos, setEventos ] = useState([]);
   const [ tela, setTela ] = useState("catalogo");
+  const [ modalCriarEvento, setModalCriarEvento ] = useState(false);
+  const [ modalEditarEvento, setModalEditarEvento ] = useState(false);
+
+  const [ inputEditEventoNome, setInputEditEventoNome ] = useState('');
+  const [ inputEditEventoCategoria, setInputEditEventoCategoria ] = useState('');
+  const [ inputEditEventoDescricao, setInputEditEventoDescricao ] = useState('');
+  const [ inputEditEventoDataInicio, setInputEditEventoDataInicio ] = useState('');
+  const [ inputEditEventoDataFim, setInputEditEventoDataFim ] = useState('');
+
+  function trocarModalCriarEvento() {
+    setTimeout(() => {
+      setModalCriarEvento(!modalCriarEvento)
+    }, 50);
+  }
+
+  function trocarModalEditarEvento(id) {
+    eventos.forEach(evento => {
+      if (evento.id == id) {
+        setInputEditEventoNome(evento.nome)
+        setInputEditEventoCategoria(evento.categoria)
+        setInputEditEventoDescricao(evento.descricao)
+        setInputEditEventoDataInicio(evento.dataInicio)
+        setInputEditEventoDataFim(evento.dataFim)
+      }
+    });
+    
+    setTimeout(() => {
+      setModalEditarEvento(!modalEditarEvento)
+    }, 50);
+  }
 
   useEffect(() => {
 
@@ -35,7 +66,9 @@ function App() {
 
   return (
     <div>
-      <Header></Header>
+      <Header funcModalCE={trocarModalCriarEvento} >
+
+      </Header>
       {
         tela == "catalogo" && (
           <Main>
@@ -46,16 +79,44 @@ function App() {
                 let dataFimFormatada = new Date(evento.dataFim).toLocaleDateString("pt-BR")
 
                 return <Evento 
+                  key={evento.id}
                   numeroEvento={evento.id}
                   caminhoImagem={"http://localhost:8080/images/" + evento.caminhoImagem} 
                   titulo={evento.nome}
                   descricao={evento.descricao}
                   dataInicio={dataInicioFormatada}
                   dataFim={dataFimFormatada}
+                  funcSetEventos={setEventos}
+                  funcGetEventos={eventos}
+                  funcTrocarModalEditarEvento={trocarModalEditarEvento}
                 />
               })
             }
-            <CriarEvento></CriarEvento>
+
+            {
+              modalCriarEvento ?
+              <CriarEvento funcModalCE={trocarModalCriarEvento} funcSetEventos={setEventos} /> :
+              null
+            }
+
+            {
+              modalEditarEvento ?
+              <EditarEvento 
+              funcModalCE={trocarModalEditarEvento} 
+              funcSetEventos={setEventos} 
+              getInputEditEventoNome={inputEditEventoNome}
+              getInputEditEventoCategoria={inputEditEventoCategoria}
+              getInputEditEventoDescricao={inputEditEventoDescricao}
+              getInputEditEventoDataInicio={inputEditEventoDataInicio}
+              getInputEditEventoDataFim={inputEditEventoDataFim}
+              setInputEditEventoNome={setInputEditEventoNome}
+              setInputEditEventoCategoria={setInputEditEventoCategoria}
+              setInputEditEventoDescricao={setInputEditEventoDescricao}
+              setInputEditEventoDataInicio={setInputEditEventoDataInicio}
+              setInputEditEventoDataFim={setInputEditEventoDataFim}
+              /> :
+              null
+            }
           </Main>
         ) 
       }

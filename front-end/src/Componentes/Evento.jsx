@@ -31,16 +31,31 @@ function Evento (props) {
 
             {buttons && (
                 <div className={style.container_options}>
-                    <div className={style.container_update}>
+                    <div className={style.container_update} onClick={() => {props.funcTrocarModalEditarEvento(props.numeroEvento)}}>
                         <img src={edit} alt="editar" />
                     </div>
-                    <div className={style.container_delete}>
+                    <div className={style.container_delete} onClick={functionDeletarEvento}>
                         <img src={trash} alt="deletar" />
                     </div>
                 </div>    
             )}
         </div>
     )
+
+    function functionDeletarEvento() {
+        fetch(`http://localhost:8080/eventos/${props.numeroEvento}`, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            if (res.ok) {
+                alert(`Evento ${props.titulo} removido!`)
+                props.funcSetEventos(props.funcGetEventos.filter(item => item.id != props.numeroEvento))
+            }
+        })
+        .catch(error => {
+            console.log("Erro ao tentar Excluír: ", error)
+        })
+    }
 }
 
 export default Evento;

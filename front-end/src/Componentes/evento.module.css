@@ -72,6 +72,10 @@ main {
     font-size: 18px;
     margin: .4rem;
     color: #414651;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
 .container_descricao {

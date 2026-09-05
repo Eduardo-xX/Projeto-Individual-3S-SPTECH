@@ -92,4 +92,16 @@ public class Evento {
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", dataInicio=" + dataInicio +
+                ", dataFim=" + dataFim +
+                '}';
+    }
+
 }

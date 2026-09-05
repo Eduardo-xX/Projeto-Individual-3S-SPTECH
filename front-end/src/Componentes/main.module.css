@@ -12,6 +12,7 @@
 
 .container_eventos {
     display: flex;
+    flex-wrap: wrap;
 }
 
 /* Largura da barra de rolagem */

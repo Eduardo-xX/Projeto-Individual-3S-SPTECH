@@ -5,7 +5,7 @@ import Evento from './Evento'
 function Main(props) {
     return (
         <main className={style.container_main}>
-            <TituloPagina titulo={"Cátalogo"} />
+            <TituloPagina titulo={"Eventos"} />
 
             <div className={style.container_eventos}>
                 {/* <Evento numeroEvento={1} image={"http://localhost:8080/images/anime-friends.png"} titulo={"Anime Friends"} descricao={"Evento de Animes que acontece na Paulista."} dataInicio={"22/10/2026"} dataFim={"30/10/2026"} />
