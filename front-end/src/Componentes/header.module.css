@@ -1,6 +1,6 @@
 header {
     height: 60px;
-    background-color: #004682;
+    background-color: var(--color-1);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -12,19 +12,19 @@ header {
     align-items: center;
     border-radius: 1rem;
     padding: .25rem .5rem;
-    background-color: rgba(128, 196, 255, 0.2);
+    background-color: var(--color-3);
     cursor: pointer;
     transition: .5s;
 }
 
 .container_addEvento:hover {
     transform: scale(1.1);
-    background-color: rgba(128, 196, 255, 0.4);
+    opacity: .8;
 }
 
 .container_addEvento:active {
     transform: scale(1.2);
-    background-color: rgba(128, 196, 255, 0.6);
+    opacity: .6;
 }
 
 .container_addEvento img {
@@ -36,5 +36,5 @@ header {
 .container_addEvento span {
     font-weight: bold;
     font-size: 1.5rem;
-    color: #1E1E1E;
+    color: var(--text-cinza-black);
 }

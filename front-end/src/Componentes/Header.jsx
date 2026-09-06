@@ -1,3 +1,4 @@
+import '../index.module.css'
 import style from './header.module.css'
 import plusCircle from '../assets/plus_circle-evento.png'
 

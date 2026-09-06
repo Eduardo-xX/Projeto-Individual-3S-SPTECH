@@ -1,3 +1,4 @@
+import '../index.module.css'
 import style from "./tituloPagina.module.css"
 
 function TituloPagina ({titulo}) {

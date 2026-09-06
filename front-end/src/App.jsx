@@ -6,18 +6,28 @@ import { useState, useEffect } from "react"
 import Evento from "./Componentes/Evento"
 import CriarEvento from "./Componentes/CriarEvento"
 import EditarEvento from "./Componentes/EditarEvento"
+import SideBarRight from "./Componentes/SideBarRight"
 
 function App() {
   const [ eventos, setEventos ] = useState([]);
   const [ tela, setTela ] = useState("catalogo");
   const [ modalCriarEvento, setModalCriarEvento ] = useState(false);
   const [ modalEditarEvento, setModalEditarEvento ] = useState(false);
+  const [ modalVerEvento, setModalVerEvento ] = useState(false);
 
+  const [ inputEditEventoId, setInputEditEventoId ] = useState('');
   const [ inputEditEventoNome, setInputEditEventoNome ] = useState('');
   const [ inputEditEventoCategoria, setInputEditEventoCategoria ] = useState('');
   const [ inputEditEventoDescricao, setInputEditEventoDescricao ] = useState('');
   const [ inputEditEventoDataInicio, setInputEditEventoDataInicio ] = useState('');
   const [ inputEditEventoDataFim, setInputEditEventoDataFim ] = useState('');
+
+  const [ verEventoImagem, setVerEventoImagem ] = useState('');
+  const [ verEventoTitulo, setVerEventoTitulo ] = useState('');
+  const [ verEventoCategoria, setVerEventoCategoria ] = useState('');
+  const [ verEventoDescricao, setVerEventoDescricao ] = useState('');
+  const [ verEventoDataInicio, setVerEventoDataInicio ] = useState('');
+  const [ verEventoDataFim, setVerEventoDataFim ] = useState('');
 
   function trocarModalCriarEvento() {
     setTimeout(() => {
@@ -28,6 +38,7 @@ function App() {
   function trocarModalEditarEvento(id) {
     eventos.forEach(evento => {
       if (evento.id == id) {
+        setInputEditEventoId(id)
         setInputEditEventoNome(evento.nome)
         setInputEditEventoCategoria(evento.categoria)
         setInputEditEventoDescricao(evento.descricao)
@@ -39,6 +50,21 @@ function App() {
     setTimeout(() => {
       setModalEditarEvento(!modalEditarEvento)
     }, 50);
+  }
+
+  function trocarModalVerEvento(id) {
+    eventos.forEach(evento => {
+      if (evento.id == id) {
+        setVerEventoImagem(`http://localhost:8080/images/${evento.caminhoImagem}`)
+        setVerEventoTitulo(evento.nome)
+        setVerEventoCategoria(evento.categoria)
+        setVerEventoDescricao(evento.descricao)
+        setVerEventoDataInicio(evento.dataInicio)
+        setVerEventoDataFim(evento.dataFim)
+      }
+    });
+
+    setModalVerEvento(!modalVerEvento)
   }
 
   useEffect(() => {
@@ -73,6 +99,7 @@ function App() {
         tela == "catalogo" && (
           <Main>
             {
+              eventos.length > 0 ? 
               eventos.map((evento) => {
 
                 let dataInicioFormatada = new Date(evento.dataInicio).toLocaleDateString("pt-BR")
@@ -89,8 +116,15 @@ function App() {
                   funcSetEventos={setEventos}
                   funcGetEventos={eventos}
                   funcTrocarModalEditarEvento={trocarModalEditarEvento}
+                  funcTrocarModalVerEvento={trocarModalVerEvento}
                 />
               })
+
+              :
+              <div className={Style.container_semEventos}>
+                <span>0 eventos cadastrados.</span>
+                <span>Cadastre um Evento!</span>
+              </div>
             }
 
             {
@@ -103,7 +137,9 @@ function App() {
               modalEditarEvento ?
               <EditarEvento 
               funcModalCE={trocarModalEditarEvento} 
+              funcGetEventos={eventos} 
               funcSetEventos={setEventos} 
+              getInputEditEventoId={inputEditEventoId}
               getInputEditEventoNome={inputEditEventoNome}
               getInputEditEventoCategoria={inputEditEventoCategoria}
               getInputEditEventoDescricao={inputEditEventoDescricao}
@@ -114,6 +150,20 @@ function App() {
               setInputEditEventoDescricao={setInputEditEventoDescricao}
               setInputEditEventoDataInicio={setInputEditEventoDataInicio}
               setInputEditEventoDataFim={setInputEditEventoDataFim}
+              /> :
+              null
+            }
+
+            {
+              modalVerEvento ?
+              <SideBarRight funcGetEventos={eventos} 
+                funcTrocarModalVerEvento={trocarModalVerEvento}
+                imagem={verEventoImagem} 
+                titulo={verEventoTitulo} 
+                categoria={verEventoCategoria} 
+                descricao={verEventoDescricao} 
+                dataInicio={verEventoDataInicio} 
+                dataFim={verEventoDataFim} 
               /> :
               null
             }

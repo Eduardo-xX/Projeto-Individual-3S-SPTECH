@@ -3,7 +3,7 @@
 }
 
 .container_criarEvento {
-    background-color: rgba(230, 230, 230, .9);
+    background-color: var(--fundo-criar);
     border-radius: 1rem;
     position: absolute;
     width: 600px;
@@ -116,7 +116,7 @@ form .container_buttons {
 }
 
 form #idButton {
-    background-color: #004682;
+    background-color: var(--color-1);
     padding: .5rem 1rem;
     border-radius: 1rem;
     color: #efefef;
@@ -125,17 +125,19 @@ form #idButton {
 
 form #idButton:hover {
     transform: scale(1.1);
-    background-color: rgba(0, 69, 130, 0.8);
+    background-color: var(--color-1);
+    opacity: .8;
     cursor: pointer;
 }
 
 form #idButton:active {
     transform: scale(1.2);
-    background-color: rgba(0, 69, 130, 0.7);
+    background-color: var(--color-1);
+    opacity: .7;
 }
 
 form #idButtonCancel {
-    background-color: #820000;
+    background-color: var(--color-cancel);
     padding: .5rem 1rem;
     border-radius: 1rem;
     color: #efefef;
@@ -144,11 +146,12 @@ form #idButtonCancel {
 
 form #idButtonCancel:hover {
     transform: scale(1.1);
-    background-color: rgba(130, 0, 0, 0.8);
+    background-color: var(--color-cancel);
+    opacity: .8;
     cursor: pointer;
 }
 
 form #idButtonCancel:active {
     transform: scale(1.2);
-    background-color: rgba(130, 0, 0, 0.7);
+    background-color: var(--color-cancel);
 }

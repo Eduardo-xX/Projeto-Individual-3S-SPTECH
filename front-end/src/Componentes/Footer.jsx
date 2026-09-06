@@ -1,3 +1,4 @@
+import '../index.module.css'
 import style from "./footer.module.css"
 
 function Footer() {

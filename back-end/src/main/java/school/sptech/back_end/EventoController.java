@@ -11,7 +11,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.plaf.nimbus.State;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
@@ -19,7 +18,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -74,6 +72,34 @@ public class EventoController {
 
     ) throws IOException {
 
+        if (
+                nome == null || nome.isBlank() ||
+                categoria == null || categoria.isBlank() ||
+                descricao == null || descricao.isBlank() ||
+                dataInicio == null ||
+                dataFim == null ||
+                imagem.isEmpty()
+        ) {
+            return ResponseEntity.status(400).build();
+        }
+
+        String sqlSelectUnico = "SELECT * FROM evento;";
+        List<Evento> eventosBanco = this.jdbcTemplate.query(
+                sqlSelectUnico,
+                new BeanPropertyRowMapper<>(Evento.class)
+        );
+
+        for (Evento evento : eventosBanco) {
+            if (
+                    evento.getNome().equalsIgnoreCase(nome) &&
+                    evento.getCategoria().equalsIgnoreCase(categoria) &&
+                    evento.getDescricao().equalsIgnoreCase(descricao) &&
+                    evento.getDataInicio() == dataInicio &&
+                    evento.getDataFim() == dataFim
+            ) {
+                return ResponseEntity.status(409).build();
+            }
+        }
 
         String nomeArquivo = UUID.randomUUID() + "_" + imagem.getOriginalFilename();
 
@@ -113,7 +139,7 @@ public class EventoController {
         return ResponseEntity.status(201).body(evento);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Evento> update(
             @PathVariable Integer id,
 
@@ -203,6 +229,24 @@ public class EventoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        String sqlSelect = "SELECT * FROM evento WHERE id = ?;";
+
+        Evento eventoBanco;
+
+        try {
+            eventoBanco = this.jdbcTemplate.queryForObject(
+                    sqlSelect,
+                    new BeanPropertyRowMapper<>(Evento.class),
+                    id
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(404).build();
+        }
+
+        if (eventoBanco == null) {
+            return ResponseEntity.status(404).build();
+        }
+
         String sql = "DELETE FROM evento WHERE id = ?;";
 
         this.jdbcTemplate.update(

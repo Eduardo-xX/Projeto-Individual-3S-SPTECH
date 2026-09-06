@@ -1,3 +1,4 @@
+import '../index.module.css'
 import style from "./criarEvento.module.css"
 import { useState } from "react"
 

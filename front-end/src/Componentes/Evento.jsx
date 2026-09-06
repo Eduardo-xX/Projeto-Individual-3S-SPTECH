@@ -1,3 +1,4 @@
+import '../index.module.css'
 import style from "./evento.module.css"
 import menuEvento from "../assets/menu-evento.png"
 import edit from "../assets/edit-evento-blue.png"
@@ -16,16 +17,16 @@ function Evento (props) {
             <div className={style.container_buttonOptions} onClick={() => buttonMenu("evento-" + props.numeroEvento)}>
                 <img src={menuEvento} alt="menu" className={style.menuEvento}/>
             </div>
-            <div className={style.container_image}>
+            <div className={style.container_image} onClick={() => {props.funcTrocarModalVerEvento(props.numeroEvento)}}>
                 <img src={props.caminhoImagem} alt="Imagem" />
             </div>
-            <div className={style.container_titulo}>
+            <div className={style.container_titulo} onClick={() => {props.funcTrocarModalVerEvento(props.numeroEvento)}}>
                 <span>{props.titulo}</span>
             </div>
-            <div className={style.container_descricao}>
+            <div className={style.container_descricao} onClick={() => {props.funcTrocarModalVerEvento(props.numeroEvento)}}>
                 <span>{props.descricao}</span>
             </div>
-            <div className={style.container_datas}>
+            <div className={style.container_datas} onClick={() => {props.funcTrocarModalVerEvento(props.numeroEvento)}}>
                 <span>{props.dataInicio} - {props.dataFim}</span>
             </div>
 

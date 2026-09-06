@@ -1,3 +1,4 @@
+import '../index.module.css'
 import style from "./editarEvento.module.css"
 import { useState } from "react"
 
@@ -93,9 +94,14 @@ function EditarEvento (props) {
         let nome = document.getElementById('idNome').value
         let categoria = document.getElementById('idCategoria').value
         let descricao = document.getElementById('idDescricao').value
-        let image = document.getElementById('idImageUpload')
         let dataInicio = document.getElementById('idDataInicio').value
         let dataFim = document.getElementById('idDataFim').value
+        let image = null
+        
+        let alterarImagem = document.getElementById(style.idAlterarImagem).checked
+        if (alterarImagem) {
+            image = document.getElementById('idImageUpload')
+        }
 
         if (nome == null || nome.trim() == '') {
             alert('Digite algum Nome para o Evento')
@@ -114,30 +120,48 @@ function EditarEvento (props) {
             return
         }
 
-        if (!image.files || !image.files[0]) {
-            alert('Selecione alguma imagem!')
-            return;
+        const formData = new FormData();
+
+        if (image != null) {
+            if (!image.files || !image.files[0]) {
+                alert('Selecione alguma imagem!')
+                return;
+            } else {
+                formData.append("imagem", image.files[0])
+            }
         }
 
-        const formData = new FormData();
-        formData.append("imagem", image.files[0])
         formData.append("nome", nome)
         formData.append("categoria", categoria)
         formData.append("descricao", descricao)
         formData.append("dataInicio", dataInicio)
         formData.append("dataFim", dataFim)
 
-        fetch('http://localhost:8080/eventos', {
-            method: 'POST',
+        fetch(`http://localhost:8080/eventos/${props.getInputEditEventoId}`, {
+            method: 'PUT',
             body: formData
         })
         .then(res => {
             if (res.ok) {
                 res.json().then(dados => {
-                    props.funcSetEventos((eventosAtuais) => [
-                        ...eventosAtuais,
-                        dados
-                    ])
+                    // props.funcSetEventos((eventosAtuais) => [
+                    //     ...eventosAtuais,
+                    //     dados
+                    // ])
+
+                    // let listAuxiliar = props.funcGetEventos.filter(item => item.id != props.getInputEditEventoId)
+
+                    let listAuxiliar = []
+
+                    props.funcGetEventos.forEach(eventoAtual => {
+                        if (eventoAtual.id != props.getInputEditEventoId) {
+                            listAuxiliar.push(eventoAtual)
+                        } else {
+                            listAuxiliar.push(dados)
+                        }
+                    });
+
+                    props.funcSetEventos(listAuxiliar)
                 })
             } else {
                 console.log("Não deu Ok...")

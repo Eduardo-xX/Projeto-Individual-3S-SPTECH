@@ -12,10 +12,11 @@ main {
     margin: 1.5rem;
     position: relative;
     transition: .3s;
+    height: min-content;
 }
 
 .container_evento:hover {
-    background-color: rgb(68, 68, 68, 0.2);
+    background-color: var(--fundo-evento-hover);
     border-radius: 1rem;
     cursor: pointer;
     transform: scale(1.03);
@@ -27,14 +28,10 @@ main {
     position: absolute;
     right: 0;
     cursor: pointer;
-    background-color: rgba(128, 196, 255, 0.6);
+    background-color: var(--color-3);
     padding: 0 .5rem;
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 0 1rem 0 0;
     transition: .6s;
-}
-
-.container_buttonOptions:hover {
-    background-color: rgba(128, 196, 255, 1);
 }
 
 .container_buttonOptions img {
@@ -54,7 +51,6 @@ main {
 }
 
 .container_image {
-    background-color: #813A00;
     width: 250px;
     height: 130px;
     display: flex;
@@ -71,7 +67,7 @@ main {
     font-weight: bold;
     font-size: 18px;
     margin: .4rem;
-    color: #414651;
+    color: var(--text-titulo);
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -80,7 +76,7 @@ main {
 
 .container_descricao {
     margin: .2rem .4rem;
-    color: #535862;
+    color: var(--text-descricao);
     font-size: 14px;
     /* overflow-wrap: break-word; */
     display: -webkit-box;
@@ -93,7 +89,7 @@ main {
     display: flex;
     justify-content: center;
     margin: .5rem .4rem;
-    color: #414651;
+    color: var(--text-data);
     font-size: 12px;
 }
 
@@ -101,7 +97,7 @@ main {
     position: absolute;
     top: 30px;
     right: 0;
-    background-color: rgba(128, 196, 255, 0.6);
+    background-color: var(--color-3);
     padding: .5rem;
     border-radius: 0 0 1rem 1rem;
 }

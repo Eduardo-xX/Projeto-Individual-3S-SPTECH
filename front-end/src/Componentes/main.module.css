@@ -1,11 +1,12 @@
 :root {
-    --altura: calc(100vh - 60px - 50px)
+    --altura-main: calc(100vh - 60px - 50px);
+    --altura-main-container: calc(100vh - 60px - 50px - 124px);
 }
 
 .container_main {
     display: block;
-    background-color: #FFB980;
-    height: var(--altura);
+    background-color: var(--color-2);
+    height: var(--altura-main);
     overflow-y: auto;
     position: relative;
 }
@@ -13,6 +14,7 @@
 .container_eventos {
     display: flex;
     flex-wrap: wrap;
+    height: var(--altura-main-container);
 }
 
 /* Largura da barra de rolagem */
