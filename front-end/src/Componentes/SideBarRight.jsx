@@ -2,8 +2,10 @@ import '../index.module.css'
 import style from './sideBarRight.module.css'
 
 function SideBarRight(props) {
-    let novaDataInicio = new Date(props.dataInicio.split("T")[0])
-    let novaDataFim = new Date(props.dataFim.split("T")[0])
+    // let novaDataInicio = new Date(props.dataInicio.split("T")[0])
+    // let novaDataFim = new Date(props.dataFim.split("T")[0])
+    let novaDataInicio = new Date(props.dataInicio)
+    let novaDataFim = new Date(props.dataFim)
 
     return (
         <div className={style.container_sideBarRight}>
@@ -25,7 +27,7 @@ function SideBarRight(props) {
             </div>
 
             <div className={style.container_datas}>
-                <span><strong>{novaDataInicio.toLocaleDateString()}</strong> - <strong>{novaDataFim.toLocaleDateString()}</strong></span>
+                <span><strong>{novaDataInicio.toLocaleDateString("pt-BR")}</strong> - <strong>{novaDataFim.toLocaleDateString("pt-BR")}</strong></span>
             </div>
 
             <div className={style.container_voltar} onClick={props.funcTrocarModalVerEvento}>
